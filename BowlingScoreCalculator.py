@@ -27,7 +27,8 @@ class BowlingScoreCalculator():
         postmsg = {"points":sums};
         response = requests.post(self.APIUrl,json=postmsg,params={"token":self.token});
         print "Token status code: " + str(response.status_code);
-        #Class end
+
+#Class end
 
 
 #If script is run directly, as opposed to imported.
