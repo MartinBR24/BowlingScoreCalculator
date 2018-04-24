@@ -18,7 +18,7 @@ class BowlingScoreCalculatorTests(unittest.TestCase):
         self.assertEqual(actualSums,exampleSums);
 
     def testTenDifferentScores_APIResult(self):
-        # List of different test scores to evaluate against a broader test-set.
+        # Test with 10 different datasets
         calc = BowlingScoreCalculator.BowlingScoreCalculator();
 
         # 10 Times, Get scores, calculate and post to API. Assert from response that:
