@@ -2,6 +2,7 @@
 
 ## Docker container
 Et Image med scripts er sat op og klar til at køre under **martinbr24/bowlingimage**
+
 Container kan startes og køre scripts direkte ved hjælp af følgende kommando:
 
 >$`docker run martinbr24/bowlingimage /bin/bash -c "python /BowlingScoreCalculator/Scripts/BowlingScoreCalculatorTests.py && python /BowlingScoreCalculator/Scripts/BowlingScoreCalculator.py`
