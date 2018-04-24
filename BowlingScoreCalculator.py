@@ -2,31 +2,25 @@ import requests
 import json
 
 class BowlingScoreCalculator():
+    APIUrl = "";
 
-    APIUrl = "http://13.74.31.101/api/points";
-    points = {};
-    token = "";
-    sums = [];
+    def __init__(self, APIUrl = "http://13.74.31.101/api/points"):
+        self.APIUrl = APIUrl;
 
-    def CalculateFrameSums(self, pointsArray=[]):
+    def CalculateFrameSums(self, pointsArray):
         returnArray = [];
         return "Unimplemented"
 
     def GetPointsFromAPI(self):
         #Get bowling point frames and API POST Token
         response = requests.get(self.APIUrl);
-        JSON = response.json();
-        #Save to variables
 
-        self.points = JSON['points'];
-        self.token = JSON["token"];
+        return response;
 
-    def PostSumsToAPI(self):
-        sums = self.CalculateFrameSums();
-
+    def PostSumsToAPI(self,sums,token):
         postmsg = {"points":sums};
-        response = requests.post(self.APIUrl,json=postmsg,params={"token":self.token});
-        print "Token status code: " + str(response.status_code);
+        response = requests.post(self.APIUrl,json=postmsg,params={"token":token});
+        return response;
 
 #Class end
 
@@ -35,5 +29,7 @@ class BowlingScoreCalculator():
 if __name__ == "__main__":
 
     calc = BowlingScoreCalculator();
-    calc.GetPointsFromAPI();
-    calc.PostSumsToAPI();
+    JSON = calc.GetPointsFromAPI().json();
+    response = calc.PostSumsToAPI(JSON["points"],JSON["token"]);
+    print "Token status code: " + str(response.status_code);
+    print "Calculation success: " + str(response.json()["success"]);
