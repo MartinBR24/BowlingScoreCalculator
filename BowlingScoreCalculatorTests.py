@@ -17,6 +17,20 @@ class BowlingScoreCalculatorTests(unittest.TestCase):
         actualSums = calc.CalculateFrameSums(exampleScores);
         self.assertEqual(actualSums,exampleSums);
 
+    def testTenDifferentScores_APIResult(self):
+        # List of different test scores to evaluate against a broader test-set.
+        calc = BowlingScoreCalculator.BowlingScoreCalculator();
+
+        # 10 Times, Get scores, calculate and post to API. Assert from response that:
+        # Token is accepted
+        # Success status is true
+        for i in range(0,9):
+            JSON = calc.GetPointsFromAPI().json();
+            sums = calc.CalculateFrameSums(JSON["points"]);
+            response = calc.PostSumsToAPI(sums,JSON["token"]);
+            self.assertEqual(response.status_code,200);
+            self.assertTrue(response.json()["success"]);
+
     def testIntegration_CorrectTokenStatus(self):
         # Test that API Integration gets correct and functioning token status. (success code 200)
         calc = BowlingScoreCalculator.BowlingScoreCalculator();
