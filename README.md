@@ -1,5 +1,5 @@
 # BowlingScoreCalculator
-
+Besvarelsen er skrevet i python, fordi dette kræver minimalt framework og kører på alle platforme.
 ## Docker container
 Et Image med scripts er sat op og klar til at køre under **martinbr24/bowlingimage**
 
